@@ -1,23 +1,23 @@
 import pygame
 
 from constants import Color
-# from scenes import MainScene, MenuScene, FinalScene, PauseScene
+from scenes import MenuScene, MainScene
 # from scenes.overlay import OverlayScene
 
 
 # TODO: Add all the scenes and make it work with them
 class Game:
     SIZE = WIDTH, HEIGHT = 800, 600
-    # MENU_SCENE_INDEX = 0
-    # MAIN_SCENE_INDEX = 1
+    MENU_SCENE_INDEX = 0
+    MAIN_SCENE_INDEX = 1
     # GAMEOVER_SCENE_INDEX = 2
     # PAUSE_SCENE_INDEX = 3
-    # current_scene_index = MENU_SCENE_INDEX
+    current_scene_index = MENU_SCENE_INDEX
 
     def __init__(self) -> None:
         self.screen = pygame.display.set_mode(self.SIZE, pygame.RESIZABLE)
 
-        # self.scenes = [MenuScene(self), MainScene(self), FinalScene(self), PauseScene(self)]
+        self.scenes = [MenuScene(self), MainScene(self)]
         self.game_over = False
 
     @staticmethod

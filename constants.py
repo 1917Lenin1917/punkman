@@ -4,6 +4,7 @@ from enum import Enum
 # https://www.pygame.org/docs/ref/color.html
 # https://github.com/pygame/pygame/blob/master/src_py/colordict.py
 
+
 class Color:
     RED = pygame.color.Color('red')
     BLUE = pygame.color.Color('blue')
@@ -13,7 +14,8 @@ class Color:
     ORANGE = pygame.color.Color('orange')
     YELLOW = pygame.color.Color('yellow')
 
-class Content(Enum):
+
+class Content:
     EMPTY = ' '
     WALL = '#'
     CHERRY = '.'
