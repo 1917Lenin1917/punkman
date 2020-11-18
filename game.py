@@ -16,7 +16,6 @@ class Game:
 
     def __init__(self) -> None:
         self.screen = pygame.display.set_mode(self.SIZE, pygame.RESIZABLE)
-
         # self.scenes = [MenuScene(self), MainScene(self), FinalScene(self), PauseScene(self)]
         self.game_over = False
 

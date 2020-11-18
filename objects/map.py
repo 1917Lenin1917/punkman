@@ -1,4 +1,3 @@
-from constants import Content
 from objects.tile import Tile
 
 class Map:
@@ -17,4 +16,6 @@ class Map:
         self.tile_arr = self.extract(self.map_path)
 
     def draw(self):
-        pass
+        '''draws each tile of map from tile array'''
+        for i in range(len(self.tile_arr)):
+            self.tile_arr[i].draw()
