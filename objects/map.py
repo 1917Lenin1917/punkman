@@ -1,6 +1,4 @@
-from constants import Content, Color
 from objects.tile import Tile
-import pygame
 
 
 class Map:
@@ -21,8 +19,8 @@ class Map:
         self.tile_arr = self.extract(self.map_path)
 
     def process_draw(self):
-        for tile in self.tile_arr:
-            pygame.draw.rect(self.game.screen, tile.color, tile.rect)
+        for i in range(len(self.tile_arr)):
+            self.tile_arr[i].draw()
 
     def process_logic(self):
         pass
