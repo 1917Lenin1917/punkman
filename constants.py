@@ -1,9 +1,8 @@
 import pygame
-from enum import Enum
 
 # https://www.pygame.org/docs/ref/color.html
 # https://github.com/pygame/pygame/blob/master/src_py/colordict.py
-
+tilesize = 50
 
 class Color:
     RED = pygame.color.Color('red')

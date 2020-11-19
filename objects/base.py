@@ -2,6 +2,7 @@ import pygame
 
 
 class DrawableObject:     # TODO: bring here pygame.sprite.Sprite inheritance
+
     def __init__(self, game) -> None:
         self.game = game
         self.rect = pygame.rect.Rect(0, 0, 0, 0)
