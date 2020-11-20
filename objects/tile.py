@@ -3,7 +3,7 @@ from constants import Content, tilesize
 
 class Tile:
 
-    def __init__(self, x, y, cnt, screen):
+    def __init__(self, x, y, cnt, game):
         # Rect object for hitboxing
         self.rect = pygame.rect.Rect(x*tilesize, y*tilesize, tilesize, tilesize)
         # real matrix coordinates
@@ -11,7 +11,7 @@ class Tile:
         self.matrix_y = self.rect.y
         # what's inside the tile
         self.content = cnt
-        self.screen = screen
+        self.game = game
         self.__set_sprite()
 
     def __str__(self):
@@ -32,4 +32,4 @@ class Tile:
 
     def draw(self):
         '''blits tile sprite on the exact coordinates of pygame window'''
-        self.screen.blit(self.sprite, self.rect)
+        self.game.screen.blit(self.sprite, self.rect)
