@@ -8,7 +8,7 @@ class Pacman(MovingObject):
     def __init__(self, game, x, y, speed):
         super().__init__(game, x, y, pygame.image.load(self.pacman_sprite), Content.PACMAN)
 
-    def process_move(self, event):
+    def process_move(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]: self.move(-1, 0)
         elif keys[pygame.K_d]: self.move(1, 0)
@@ -21,5 +21,5 @@ class Pacman(MovingObject):
         print(self.real_x, self.real_y)
         self.update_pos()
 
-    def process_event(self, event):
-        self.process_move(event)
+    def process_logic(self):
+        self.process_move()
