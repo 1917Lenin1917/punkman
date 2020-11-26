@@ -8,6 +8,7 @@ from scenes import MenuScene, MainScene
 # TODO: Add all the scenes and make it work with them
 class Game:
     SIZE = WIDTH, HEIGHT = 800, 600
+    FPS = 10
     MENU_SCENE_INDEX = 0
     MAIN_SCENE_INDEX = 1
     # GAMEOVER_SCENE_INDEX = 2
@@ -58,11 +59,12 @@ class Game:
         pygame.display.flip()
 
     def main_loop(self) -> None:
+        fps_clock = pygame.time.Clock()
         while not self.game_over:
             self.process_all_events()
             self.process_all_logic()
             self.process_all_draw()
-            pygame.time.wait(10)
+            fps_clock.tick(self.FPS)
 
     def set_scene(self, index: int, resume: bool = False) -> None:
         if not resume:

@@ -1,9 +1,8 @@
 import pygame
-from enum import Enum
 
 # https://www.pygame.org/docs/ref/color.html
 # https://github.com/pygame/pygame/blob/master/src_py/colordict.py
-
+tilesize = 50
 
 class Color:
     RED = pygame.color.Color('red')
@@ -16,12 +15,13 @@ class Color:
 
 
 class Content:
-    EMPTY = ' '
-    WALL = '#'
-    CHERRY = '.'
-    POWER_UP = '0'
-    BLINKY = 'b'
-    PINKY = 'p'
-    INKY = 'i'
-    CLYDE = 'c'
-    PACMAN = 'm'
+    EMPTY = ' ' # пустая клетка
+    WALL = '#' # стена
+    DOT = '.' # точка
+    CHERRY = 'o' # вишенка
+    POWER_UP = '0' # больгая точка, дающая неуявзимость
+    BLINKY = 'b' # красное приведение
+    PINKY = 'p' # розовое приведение
+    INKY = 'i' # синее приведение
+    CLYDE = 'c' # оранжевое приведение
+    PACMAN = 'm' # главный герой
