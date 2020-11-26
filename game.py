@@ -8,7 +8,7 @@ from scenes import MenuScene, MainScene
 # TODO: Add all the scenes and make it work with them
 class Game:
     SIZE = WIDTH, HEIGHT = 800, 600
-    FPS = 1
+    FPS = 10
     MENU_SCENE_INDEX = 0
     MAIN_SCENE_INDEX = 1
     # GAMEOVER_SCENE_INDEX = 2

@@ -22,13 +22,5 @@ class Pacman(MovingObject):
         # move log: print(self.real_x, self.real_y, self.map.tile_arr[self.real_y][self.real_x].content)
         self.update_pos()
 
-    '''checks if next step Tile is not a Wall'''
-    def is_able_to_move(self, x, y):
-        '''дело в том, что в двумерной матрице первая координата - это строка или же Y, а вторая - X'''
-        if self.map.tile_arr[self.real_y + y][self.real_x +x].content != Content.WALL:
-            return True
-        else:
-            return False
-
     def process_logic(self):
         self.process_move()
