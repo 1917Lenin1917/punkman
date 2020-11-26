@@ -4,7 +4,7 @@ from constants import tilesize
 
 
 class MovingObject(DrawableObject):
-    def __init__(self, game, x, y, sprite, content):
+    def __init__(self, game, x, y, sprite, content, map_ref):
         super().__init__(game)
         # pygame screen pos
         self.rect.x = x*tilesize
@@ -16,6 +16,8 @@ class MovingObject(DrawableObject):
         # appearence
         self.sprite = sprite
         self.content = content
+        # map reference
+        self.map = map_ref
 
     def update_pos(self):
         self.rect.x = self.real_x * tilesize
