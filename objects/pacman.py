@@ -19,8 +19,18 @@ class Pacman(MovingObject):
     def move(self, x_increment, y_increment):
         self.real_x += x_increment
         self.real_y += y_increment
-        # move log: print(self.real_x, self.real_y, self.map.tile_arr[self.real_y][self.real_x].content)
+        # move log: 
+        print(self.real_x, self.real_y, self.map.tile_arr[self.real_y][self.real_x].content)
+        self.check_teleportation()
         self.update_pos()
+
+    def check_teleportation(self):
+        if self.real_x == self.map.teleport1[0] and self.real_y == self.map.teleport1[1]:
+            self.real_x = self.map.teleport2[0]+1
+            self.real_y = self.map.teleport2[1]
+        elif self.real_x == self.map.teleport2[0] and self.real_y == self.map.teleport2[1]:
+            self.real_x = self.map.teleport1[0]-1
+            self.real_y = self.map.teleport1[1]
 
     def process_logic(self):
         self.process_move()
