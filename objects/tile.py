@@ -7,8 +7,8 @@ class Tile:
         # Rect object for hitboxing
         self.rect = pygame.rect.Rect(x*tilesize, y*tilesize, tilesize, tilesize)
         # real matrix coordinates
-        self.matrix_x = self.rect.x
-        self.matrix_y = self.rect.y
+        self.matrix_x = x
+        self.matrix_y = y
         # what's inside the tile
         self.content = cnt
         self.game = game

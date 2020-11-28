@@ -25,3 +25,4 @@ class Content:
     INKY = 'i' # синее приведение
     CLYDE = 'c' # оранжевое приведение
     PACMAN = 'm' # главный герой
+    TELEPORT = 't'
