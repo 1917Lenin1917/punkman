@@ -2,6 +2,7 @@ import pygame
 from constants import Content
 from .moving_object import MovingObject
 
+
 class Pacman(MovingObject):
     pacman_sprite = 'sprites/pacman.png'
 

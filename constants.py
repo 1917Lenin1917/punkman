@@ -2,7 +2,7 @@ import pygame
 
 # https://www.pygame.org/docs/ref/color.html
 # https://github.com/pygame/pygame/blob/master/src_py/colordict.py
-tilesize = 50
+tilesize = 25
 
 class Color:
     RED = pygame.color.Color('red')
@@ -15,7 +15,7 @@ class Color:
 
 
 class Content:
-    EMPTY = ' ' # пустая клетка
+    EMPTY = '-' # пустая клетка
     WALL = '#' # стена
     DOT = '.' # точка
     CHERRY = 'o' # вишенка

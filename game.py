@@ -1,13 +1,13 @@
 import pygame
 
-from constants import Color
+from constants import Color, tilesize
 from scenes import MenuScene, MainScene
 # from scenes.overlay import OverlayScene
 
 
 # TODO: Add all the scenes and make it work with them
 class Game:
-    SIZE = WIDTH, HEIGHT = 800, 600
+    SIZE = WIDTH, HEIGHT = tilesize*28, tilesize*36
     FPS = 10
     MENU_SCENE_INDEX = 0
     MAIN_SCENE_INDEX = 1
@@ -16,7 +16,7 @@ class Game:
     current_scene_index = MENU_SCENE_INDEX
 
     def __init__(self) -> None:
-        self.screen = pygame.display.set_mode(self.SIZE, pygame.RESIZABLE)
+        self.screen = pygame.display.set_mode(self.SIZE)
 
         self.scenes = [MenuScene(self), MainScene(self)]
         self.game_over = False
@@ -41,7 +41,7 @@ class Game:
         if event.type != pygame.VIDEORESIZE:
             return
         self.SIZE = self.WIDTH, self.HEIGHT = event.w, event.h
-        self.screen = pygame.display.set_mode(self.SIZE, pygame.RESIZABLE)
+        self.screen = pygame.display.set_mode(self.SIZE, pygame.SCALED)
         self.resize_scenes()
 
     def process_all_events(self) -> None:

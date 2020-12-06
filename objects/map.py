@@ -1,6 +1,7 @@
 from objects.tile import Tile
 from constants import Content
 
+
 class Map:
     map_path = 'pacman.map'
 
@@ -28,9 +29,9 @@ class Map:
         for i in self.tile_arr:
             for j in i:
                 if j.content == Content.TELEPORT:
-                    if self.teleport1 == None:
+                    if self.teleport1 is None:
                         self.teleport1 = j.matrix_x, j.matrix_y
-                    elif self.teleport2 == None:
+                    elif self.teleport2 is None:
                         self.teleport2 = j.matrix_x, j.matrix_y
         print(self.teleport1, self.teleport2, sep='\n')
 
