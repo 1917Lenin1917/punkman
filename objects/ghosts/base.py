@@ -1,16 +1,17 @@
 import pygame
 from objects.moving_object import MovingObject
 from constants import Content
-from objects import Map, Tile
+from objects import Map, Tile, Pacman
 
 
 class Ghost(MovingObject):
     ghost_sprite = 'sprites/blinky.png'
 
-    def __init__(self, game, x, y, map_ref: Map, ttile_coords, sprite_name=None):
+    def __init__(self, game, x, y, map_ref: Map, pacman_ref: Pacman, ttile_coords, sprite_name=None):
         if sprite_name is not None:
             self.ghost_sprite = f'sprites/{sprite_name}.png'
         super().__init__(game, x, y, pygame.image.load(self.ghost_sprite), Content.PINKY, map_ref)
+        self.pacman = pacman_ref
         self.can_leave = True
         self.prev_dir = (-1, 0)
         self.dir = (-1, 0)

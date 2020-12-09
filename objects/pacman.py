@@ -26,6 +26,8 @@ class Pacman(MovingObject):
         self.update_pos()
 
     def check_teleportation(self):
+        if self.map.teleport1 is None: return
+
         if self.real_x == self.map.teleport1[0] and self.real_y == self.map.teleport1[1]:
             self.real_x = self.map.teleport2[0]+1
             self.real_y = self.map.teleport2[1]
