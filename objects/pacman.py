@@ -1,12 +1,14 @@
 import pygame
 from constants import Content
 from .moving_object import MovingObject
+from misc import clamp
 
 
 class Pacman(MovingObject):
     pacman_sprite = 'sprites/pacman.png'
 
     def __init__(self, game, x, y, map_ref):
+        self.lives = 3
         super().__init__(game, x, y, pygame.image.load(self.pacman_sprite), Content.PACMAN, map_ref)
 
     def process_move(self):
@@ -34,6 +36,9 @@ class Pacman(MovingObject):
         elif self.real_x == self.map.teleport2[0] and self.real_y == self.map.teleport2[1]:
             self.real_x = self.map.teleport1[0]-1
             self.real_y = self.map.teleport1[1]
+
+    def get_eaten(self):
+        self.lives = clamp(self.lives-1, 0, 3)
 
     def process_logic(self):
         self.process_move()

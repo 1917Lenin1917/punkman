@@ -69,6 +69,9 @@ class Ghost(MovingObject):
         """
         pass
 
+    def pacman_collision(self):
+        return self.real_x == self.pacman.real_x and self.real_y == self.pacman.real_y
+
     def is_valid_dir(self, direction):
         return self.dir[0] != direction[0] * -1 if abs(self.dir[0]) == 1 else self.dir[1] != direction[1] * -1
 

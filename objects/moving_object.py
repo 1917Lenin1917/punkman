@@ -1,11 +1,13 @@
 from .base import DrawableObject
 
 from constants import tilesize, Content
+from objects import Map
 
 
 class MovingObject(DrawableObject):
-    def __init__(self, game, x, y, sprite, content, map_ref):
+    def __init__(self, game, x, y, sprite, content, map_ref: Map):
         super().__init__(game)
+        self.spawn_coords = (x, y)
         # pygame screen pos
         self.rect.x = x*tilesize
         self.rect.y = y*tilesize
@@ -18,6 +20,13 @@ class MovingObject(DrawableObject):
         self.content = content
         # map reference
         self.map = map_ref
+
+    def respawn(self):
+        self.rect.x = self.spawn_coords[0]*tilesize
+        self.rect.y = self.spawn_coords[1]*tilesize
+
+        self.real_x = self.spawn_coords[0]
+        self.real_y = self.spawn_coords[1]
 
     '''checks if next step Tile is not a Wall'''
     def is_able_to_move(self, x, y):
