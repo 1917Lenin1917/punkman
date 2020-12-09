@@ -1,10 +1,11 @@
 from .base import DrawableObject
+from objects import Map
 
 from constants import tilesize, Content
 
 
 class MovingObject(DrawableObject):
-    def __init__(self, game, x, y, sprite, content, map_ref):
+    def __init__(self, game, x, y, sprite, content, map_ref: Map):
         super().__init__(game)
         # pygame screen pos
         self.rect.x = x*tilesize

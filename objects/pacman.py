@@ -1,12 +1,16 @@
 import pygame
 from constants import Content
 from .moving_object import MovingObject
+from objects import Map
 
 
 class Pacman(MovingObject):
     pacman_sprite = 'sprites/pacman.png'
 
-    def __init__(self, game, x, y, map_ref):
+    def __init__(self, game, x, y, map_ref: Map):
+        self.points = 0
+        self.dots_eaten = 0
+
         super().__init__(game, x, y, pygame.image.load(self.pacman_sprite), Content.PACMAN, map_ref)
 
     def process_move(self):
@@ -21,7 +25,7 @@ class Pacman(MovingObject):
         self.real_x += x_increment
         self.real_y += y_increment
         # move log: 
-        print(self.real_x, self.real_y, self.map.tile_arr[self.real_y][self.real_x].content)
+        # print(self.real_x, self.real_y, self.map.tile_arr[self.real_y][self.real_x].content)
         self.check_teleportation()
         self.update_pos()
 
@@ -35,5 +39,13 @@ class Pacman(MovingObject):
             self.real_x = self.map.teleport1[0]-1
             self.real_y = self.map.teleport1[1]
 
+    def eat(self):
+        if self.map.tile_arr[self.real_y][self.real_x].content == Content.DOT:
+            self.points += 10
+            self.dots_eaten += 1
+            self.map.tile_arr[self.real_y][self.real_x].content = Content.EMPTY
+            self.map.tile_arr[self.real_y][self.real_x].set_sprite()
+
     def process_logic(self):
+        self.eat()
         self.process_move()

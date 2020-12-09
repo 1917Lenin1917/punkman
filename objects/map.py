@@ -1,12 +1,13 @@
 from objects.tile import Tile
 from constants import Content
+from typing import List
 
 
 class Map:
     map_path = 'pacman.map'
 
     def extract(self, map_path):
-        tile_arr = []
+        tile_arr: List[List[Tile]] = []
         with open(map_path, 'r') as mp:
             tile_code_arr = [list(i.strip()) for i in mp.readlines()]
             for row in range(len(tile_code_arr)):
@@ -17,7 +18,9 @@ class Map:
         self.game = game
         self.teleport1 = None
         self.teleport2 = None
+
         self.tile_arr = self.extract(self.map_path)
+        self.dot_count = sum([1 for arr in self.tile_arr for tile in arr if tile.content == Content.DOT])
         self.check_teleport_pos()
 
     def process_draw(self):

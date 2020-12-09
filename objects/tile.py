@@ -12,12 +12,12 @@ class Tile:
         # what's inside the tile
         self.content = cnt
         self.game = game
-        self.__set_sprite()
+        self.set_sprite()
 
     def __str__(self):
         return self.content
 
-    def __set_sprite(self):
+    def set_sprite(self):
         """
         Sprites in .sprites folder must have same names as fields in Content class
         """
