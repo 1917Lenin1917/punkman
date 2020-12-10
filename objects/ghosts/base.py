@@ -9,7 +9,7 @@ class Ghost(MovingObject):
 
     def __init__(self, game, x, y, map_ref: Map, pacman_ref: Pacman, ttile_coords, sprite_name=None):
         if sprite_name is not None:
-            self.ghost_sprite = f'sprites/{sprite_name}.png'
+            self.ghost_sprite = f'sprites/ghosts/alive/{sprite_name}.png'
         super().__init__(game, x, y, pygame.image.load(self.ghost_sprite), Content.PINKY, map_ref)
         self.pacman = pacman_ref
         self.can_leave = True

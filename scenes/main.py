@@ -6,12 +6,12 @@ class MainScene(BaseScene):
     def create_objects(self) -> None:
         self.objects = [Map(self.game)]
         self.objects.extend([
-            Pacman(self.game, 1, 4, self.objects[0])])
+            Pacman(self.game, 9, 18, self.objects[0])])
         self.objects.extend([
-            Blinky(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'blinky'),
-            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'pinky'),
-            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'inky'),
-            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'clyde'),
+            Blinky(self.game, 9, 9,  self.objects[0], self.objects[1], (1, 1), 'blinky'),
+            Ghost(self.game, 9, 9, self.objects[0], self.objects[1], (18, 1), 'pinky'),
+            Ghost(self.game, 9, 9, self.objects[0], self.objects[1], (1, 24), 'inky'),
+            Ghost(self.game, 9, 9, self.objects[0], self.objects[1], (18, 24), 'clyde'),
         ])
         self.objects.extend([
             TextObject(self.game, 'fonts/PressStart2P-Regular.ttf', is_sys=False, text='Score:0', x=110, y=20),
