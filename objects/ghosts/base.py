@@ -16,7 +16,7 @@ class Ghost(MovingObject):
         self.prev_dir = (-1, 0)
         self.dir = (-1, 0)
         self.target_tile = (map_ref.tile_arr[ttile_coords[1]][ttile_coords[0]])
-        self.target_tile.sprite = pygame.image.load('sprites/error_sprite.png')
+        # self.target_tile.sprite = pygame.image.load('sprites/error_sprite.png')
 
     def move(self, x_increment, y_increment):
         self.real_x += x_increment

@@ -8,10 +8,10 @@ class MainScene(BaseScene):
         self.objects.extend([
             Pacman(self.game, 1, 4, self.objects[0])])
         self.objects.extend([
-            Blinky(self.game, 14, 14, self.objects[0], self.objects[1], (25, 1), 'blinky'),
-            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (2, 1), 'pinky'),
-            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 35), 'inky'),
-            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (26, 35), 'clyde'),
+            Blinky(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'blinky'),
+            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'pinky'),
+            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'inky'),
+            Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 0), 'clyde'),
         ])
         self.objects.extend([
             TextObject(self.game, 'fonts/PressStart2P-Regular.ttf', is_sys=False, text='Score:0', x=110, y=20),

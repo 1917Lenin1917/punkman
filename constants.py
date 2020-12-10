@@ -2,7 +2,7 @@ import pygame
 
 # https://www.pygame.org/docs/ref/color.html
 # https://github.com/pygame/pygame/blob/master/src_py/colordict.py
-tilesize = 25
+tilesize = 35
 
 class Color:
     RED = pygame.color.Color('red')

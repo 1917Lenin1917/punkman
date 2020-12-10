@@ -7,7 +7,7 @@ from scenes import MenuScene, MainScene
 
 # TODO: Add all the scenes and make it work with them
 class Game:
-    SIZE = WIDTH, HEIGHT = tilesize*28, tilesize*36
+    SIZE = WIDTH, HEIGHT = tilesize*19, tilesize*26
     FPS = 10
     MENU_SCENE_INDEX = 0
     MAIN_SCENE_INDEX = 1
