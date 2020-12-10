@@ -14,26 +14,27 @@ class MainScene(BaseScene):
             Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (26, 35), 'clyde'),
         ])
         self.objects.extend([
-            TextObject(self.game, 'fonts/PressStart2P-Regular.ttf', is_sys=False, text='Score:0', x=100, y=20)
+            TextObject(self.game, 'fonts/PressStart2P-Regular.ttf', is_sys=False, text='Score:0', x=110, y=20),
+            TextObject(self.game, 'fonts/PressStart2P-Regular.ttf', is_sys=False, text='Lives:0', font_size=30, x=110, y=870)
         ])
 
     def pacman_ghost_collision(self):
         collisions = list(map(lambda x: x.pacman_collision(), self.objects[2:6]))
         if True in collisions:
             self.objects[1].get_eaten()
-            print(f'Lives left: {self.objects[1].lives}')
             if self.objects[1].lives == 0:
-                print('GAME OVER')
-                self.game.exit_game()
+                pass  # die
             self.objects[1].respawn()
             for ghost in self.objects[2:6]:
                 ghost.respawn()
 
+    def update_stats(self):
+        p = self.objects[1].points
+        l = self.objects[1].lives
+        self.objects[6].update_text(f'{" "*len(str(p))}Score:{p}')
+        self.objects[7].update_text(f'Lives:{l}')
+
     def additional_logic(self):
         self.pacman_ghost_collision()
+        self.update_stats()
 
-        if self.objects[1].dots_eaten != self.objects[0].dot_count:
-            print(f'Game score is {self.objects[1].points}')
-            return
-
-        print(f'GAME END. THE FINAL SCORE IS {self.objects[1].points}')

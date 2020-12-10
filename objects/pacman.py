@@ -9,6 +9,7 @@ class Pacman(MovingObject):
     pacman_sprite = 'sprites/pacman.png'
 
     def __init__(self, game, x, y, map_ref: Map):
+        super().__init__(game, x, y, pygame.image.load(self.pacman_sprite), Content.PACMAN, map_ref)
         self.points = 0
         self.dots_eaten = 0
         self.lives = 3
