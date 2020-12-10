@@ -1,5 +1,5 @@
 from scenes import BaseScene
-from objects import Map, Pacman, Ghost, Blinky
+from objects import Map, Pacman, Ghost, Blinky, TextObject
 
 
 class MainScene(BaseScene):
@@ -12,6 +12,9 @@ class MainScene(BaseScene):
             Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (2, 1), 'pinky'),
             Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (0, 35), 'inky'),
             Ghost(self.game, 14, 14, self.objects[0], self.objects[1], (26, 35), 'clyde'),
+        ])
+        self.objects.extend([
+            TextObject(self.game, 'fonts/PressStart2P-Regular.ttf', is_sys=False, text='Score:0', x=100, y=20)
         ])
 
     def pacman_ghost_collision(self):

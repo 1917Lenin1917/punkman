@@ -6,7 +6,7 @@ from objects.base import DrawableObject
 class TextObject(DrawableObject):
     def __init__(self, game,
                  font_name: str = 'Comic Sans',
-                 font_size: int = 35, is_bold: bool = True, is_italic: bool = False, text: str = 'Define me!',
+                 font_size: int = 35, is_bold: bool = True, is_italic: bool = False, is_sys: bool = True, text: str = 'Define me!',
                  color: pygame.color.Color = (255, 255, 255), x: int = 100, y: int = 100) -> None:
         super().__init__(game)
         self.font_name = font_name
@@ -14,7 +14,10 @@ class TextObject(DrawableObject):
         self.is_bold = is_bold
         self.is_italic = is_italic
         self.color = color
-        self.font = pygame.font.SysFont(self.font_name, self.font_size, self.is_bold, self.is_italic)
+        if is_sys:
+            self.font = pygame.font.SysFont(self.font_name, self.font_size, self.is_bold, self.is_italic)
+        else:
+            self.font = pygame.font.Font(self.font_name, self.font_size)
         self.rect = pygame.rect.Rect(x, y, 10, 10)
         self.update_text(text)
 
