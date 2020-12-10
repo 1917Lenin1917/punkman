@@ -31,3 +31,9 @@ class MainScene(BaseScene):
 
     def additional_logic(self):
         self.pacman_ghost_collision()
+
+        if self.objects[1].dots_eaten != self.objects[0].dot_count:
+            print(f'Game score is {self.objects[1].points}')
+            return
+
+        print(f'GAME END. THE FINAL SCORE IS {self.objects[1].points}')

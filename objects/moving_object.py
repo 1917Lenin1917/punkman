@@ -1,4 +1,5 @@
 from .base import DrawableObject
+from objects import Map
 
 from constants import tilesize, Content
 from objects import Map
