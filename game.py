@@ -1,7 +1,7 @@
 import pygame
 
 from constants import Color, tilesize
-from scenes import MenuScene, MainScene
+from scenes import MenuScene, MainScene, RecordsScene
 # from scenes.overlay import OverlayScene
 
 
@@ -11,8 +11,9 @@ class Game:
     FPS = 10
     MENU_SCENE_INDEX = 0
     MAIN_SCENE_INDEX = 1
-    # GAMEOVER_SCENE_INDEX = 2
-    # PAUSE_SCENE_INDEX = 3
+    # GAMEOVER_SCENE_INDEX = ?
+    # PAUSE_SCENE_INDEX = ?
+    RECORDS_SCENE_INDEX = 2
     current_scene_index = MENU_SCENE_INDEX
 
     def __init__(self) -> None:
@@ -21,7 +22,7 @@ class Game:
         pygame.display.set_icon(window_icon)
         pygame.display.set_caption('Punkman v1.0')
 
-        self.scenes = [MenuScene(self), MainScene(self)]
+        self.scenes = [MenuScene(self), MainScene(self), RecordsScene(self)]
         self.game_over = False
 
     @staticmethod
