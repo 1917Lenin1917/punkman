@@ -23,7 +23,8 @@ class MainScene(BaseScene):
         if True in collisions:
             self.objects[1].get_eaten()
             if self.objects[1].lives == 0:
-                pass  # die
+                self.save_record()
+                self.game.set_scene(self.game.RECORDS_SCENE_INDEX)
             self.objects[1].respawn()
             for ghost in self.objects[2:6]:
                 ghost.respawn()
@@ -38,3 +39,9 @@ class MainScene(BaseScene):
         self.pacman_ghost_collision()
         self.update_stats()
 
+    def save_record(self):
+        with open('records.txt', 'a') as r_file:
+            r_file.write(str(self.objects[1].points) + '\n')
+
+    def on_activate(self):
+        self.objects[1].lives = 3
