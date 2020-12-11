@@ -26,8 +26,13 @@ class Pacman(MovingObject):
     def process_move(self):
         if self.is_able_to_move(*self.cache_dir):
             self.dir = self.cache_dir
+        else:
+            self.dir = (0, 0)
+            self.cache_dir = (0, 0)
 
-        if self.is_able_to_move(*self.dir): self.move(*self.dir)
+        if self.is_able_to_move(*self.dir): 
+            self.move(*self.dir)
+
 
     def move(self, x_increment, y_increment):
         self.real_x += x_increment
