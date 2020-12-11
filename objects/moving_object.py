@@ -28,6 +28,10 @@ class MovingObject(DrawableObject):
 
         self.real_x = self.spawn_coords[0]
         self.real_y = self.spawn_coords[1]
+        self.respawn_logic()
+
+    def respawn_logic(self):
+        pass
 
     '''checks if next step Tile is not a Wall'''
     def is_able_to_move(self, x, y):
