@@ -13,14 +13,21 @@ class Pacman(MovingObject):
         self.points = 0
         self.dots_eaten = 0
         self.lives = 3
+        self.dir = (0, 0)
+        self.cache_dir = (0, 0)
+
+    def process_event(self, event: pygame.event.Event):
+        if event.type == pygame.KEYDOWN:
+            if   event.key == pygame.K_a: self.cache_dir = (-1, 0)
+            elif event.key == pygame.K_d: self.cache_dir = (1, 0)
+            elif event.key == pygame.K_w: self.cache_dir = (0, -1)
+            elif event.key == pygame.K_s: self.cache_dir = (0, 1)
 
     def process_move(self):
-        keys = pygame.key.get_pressed()
+        if self.is_able_to_move(*self.cache_dir):
+            self.dir = self.cache_dir
 
-        if keys[pygame.K_a] and self.is_able_to_move(-1, 0): self.move(-1, 0)
-        elif keys[pygame.K_d] and self.is_able_to_move(1, 0): self.move(1, 0)
-        elif keys[pygame.K_w] and self.is_able_to_move(0, -1): self.move(0, -1)
-        elif keys[pygame.K_s] and self.is_able_to_move(0, 1): self.move(0, 1)
+        if self.is_able_to_move(*self.dir): self.move(*self.dir)
 
     def move(self, x_increment, y_increment):
         self.real_x += x_increment
@@ -34,10 +41,10 @@ class Pacman(MovingObject):
         if self.map.teleport1 is None: return
 
         if self.real_x == self.map.teleport1[0] and self.real_y == self.map.teleport1[1]:
-            self.real_x = self.map.teleport2[0]+1
+            self.real_x = self.map.teleport2[0]-1
             self.real_y = self.map.teleport2[1]
         elif self.real_x == self.map.teleport2[0] and self.real_y == self.map.teleport2[1]:
-            self.real_x = self.map.teleport1[0]-1
+            self.real_x = self.map.teleport1[0]+1
             self.real_y = self.map.teleport1[1]
 
     def get_eaten(self):
@@ -53,3 +60,7 @@ class Pacman(MovingObject):
     def process_logic(self):
         self.eat()
         self.process_move()
+
+    def respawn_logic(self):
+        self.dir = (0, 0)
+        self.cache_dir = (0, 0)
