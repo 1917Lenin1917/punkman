@@ -33,6 +33,6 @@ class RecordsScene(BaseScene):
         self.game.set_scene(self.game.MENU_SCENE_INDEX)
 
     def update_records_text(self, records):
-            self.record_1.update_text('1) ' + str(records[0]))
-            self.record_2.update_text('2) ' + str(records[1]))
-            self.record_3.update_text('3) ' + str(records[2]))
+        self.record_1.update_text('1) ' + str(records[0]))
+        self.record_2.update_text('2) ' + str(records[1]))
+        self.record_3.update_text('3) ' + str(records[2]))
