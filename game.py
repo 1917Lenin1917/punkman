@@ -17,7 +17,7 @@ class Game:
 
     def __init__(self) -> None:
         self.screen = pygame.display.set_mode(self.SIZE)
-        window_icon = pygame.image.load('sprites/pacman.png')
+        window_icon = pygame.image.load('sprites/punkman.png')
         pygame.display.set_icon(window_icon)
         pygame.display.set_caption('Punkman v1.0')
 
