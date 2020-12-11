@@ -2,6 +2,70 @@ import pygame
 from objects.moving_object import MovingObject
 from constants import Content
 from objects import Map, Tile, Pacman
+from typing import Tuple
+
+
+class MovementMode:
+    """
+        A data struct for easy ghost behaviour changes
+    """
+    def __init__(self, ghost, ttile_crds: Tuple[int, int]):
+        self.ghost: Ghost = ghost
+        self.map = self.ghost.map
+        self.target_tile = self.ghost.map.tile_arr[ttile_crds[1]][ttile_crds[0]]
+
+    def next_move(self) -> Tuple[int, int]:
+        self.update_ttile()
+
+        if self.ghost.dir[0] != 0:
+            possible_moves = (
+                (self.map.tile_arr[self.ghost.real_y - 1][self.ghost.real_x], (-1, 0)),
+                (self.map.tile_arr[self.ghost.real_y][self.ghost.real_x + self.ghost.dir[0]], (0, self.ghost.dir[0])),
+                (self.map.tile_arr[self.ghost.real_y + 1][self.ghost.real_x], (1, 0)),
+            )
+        else:
+            possible_moves = (
+                (self.map.tile_arr[self.ghost.real_y + self.ghost.dir[1]][self.ghost.real_x], (self.ghost.dir[1], 0)),
+                (self.map.tile_arr[self.ghost.real_y][self.ghost.real_x - 1], (0, -1)),
+                (self.map.tile_arr[self.ghost.real_y][self.ghost.real_x + 1], (0, 1)),
+            )
+        possible_moves = tuple(map(
+            lambda x: (x, self.dist_target(x[0])), possible_moves))
+        possible_moves = tuple(filter(
+            lambda x: x[0][0].content != Content.WALL, possible_moves))
+
+        if len(possible_moves) != 0:
+            next_move = min(possible_moves, key=lambda x: x[1])
+            return next_move[0][1][::-1]
+        return 0, 0
+
+    def update_ttile(self):
+        pass
+
+    def additional_logic(self):
+        pass
+
+    def dist_target(self, tile: Tile) -> float:
+        """
+        @param tile: tile on the map
+        @return: distance from tile to target tile of the ghost
+        """
+        return ((tile.matrix_x - self.target_tile.matrix_x)**2 + (tile.matrix_y - self.target_tile.matrix_y)**2)**0.5
+
+
+class Scatter(MovementMode):
+    """
+        Scatter mode is the same for all of the ghosts
+    """
+    def __init__(self, ghost, ttile_crds: Tuple[int, int]):
+        super().__init__(ghost, ttile_crds)
+
+    def update_ttile(self):
+        self.target_tile = self.target_tile
+
+
+class Chase(MovementMode):
+    pass
 
 
 class Ghost(MovingObject):
@@ -14,8 +78,8 @@ class Ghost(MovingObject):
         self.pacman = pacman_ref
         self.can_leave = True
         self.prev_dir = (-1, 0)
-        self.dir = (-1, 0)
-        self.target_tile = (map_ref.tile_arr[ttile_coords[1]][ttile_coords[0]])
+        self.dir = (0, 0)
+        self.modes = [Scatter(self, ttile_coords)]
         # self.target_tile.sprite = pygame.image.load('sprites/error_sprite.png')
 
     def move(self, x_increment, y_increment):
@@ -29,35 +93,11 @@ class Ghost(MovingObject):
         # 2. never change dir 180
         # 3. when changing directions choose cell which is closer to the target cell
         # pretty much it
-
-        if self.dir[0] != 0:
-            possible_moves = (
-                (self.map.tile_arr[self.real_y - 1][self.real_x], (-1, 0)),
-                (self.map.tile_arr[self.real_y][self.real_x + self.dir[0]], (0, self.dir[0])),
-                (self.map.tile_arr[self.real_y + 1][self.real_x], (1, 0)),
-            )
-        else:
-            possible_moves = (
-                (self.map.tile_arr[self.real_y + self.dir[1]][self.real_x], (self.dir[1], 0)),
-                (self.map.tile_arr[self.real_y][self.real_x - 1], (0, -1)),
-                (self.map.tile_arr[self.real_y][self.real_x + 1], (0, 1)),
-            )
-        possible_moves = tuple(map(
-            lambda x: (x, self.dist_target(x[0])), possible_moves))
-        possible_moves = tuple(filter(
-            lambda x: x[0][0].content != Content.WALL, possible_moves))
-
-        next_move = min(possible_moves, key=lambda x: x[1])
         self.prev_dir = self.dir
-        self.dir = next_move[0][1][::-1]
-        self.move(*self.dir)
+        self.dir = self.modes[0].next_move()
 
-    def dist_target(self, tile: Tile) -> float:
-        """
-        @param tile: tile on the map
-        @return: distance from tile to target tile of the ghost
-        """
-        return ((tile.matrix_x - self.target_tile.matrix_x)**2 + (tile.matrix_y - self.target_tile.matrix_y)**2)**0.5
+        if self.is_able_to_move(*self.dir):
+            self.move(*self.dir)
 
     def update_mode(self):
         """
@@ -77,3 +117,4 @@ class Ghost(MovingObject):
 
     def process_logic(self):
         if self.can_leave: self.process_move()
+
