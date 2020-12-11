@@ -6,11 +6,11 @@ from objects import Map
 
 
 class Pacman(MovingObject):
-    pacman_sprite = 'sprites/pacman.png'
-    # self.pacman_sprite_u = 'sprites/pacman_u.png'
-    # self.pacman_sprite_d = 'sprites/pacman_d.png'
-    # self.pacman_sprite_l = 'sprites/pacman_l.png'
-    # self.pacman_sprite_r = 'sprites/pacman_r.png'
+    pacman_sprite = 'sprites/punkman.png'
+    pacman_sprite_u = 'sprites/pacman_u.png'
+    pacman_sprite_d = 'sprites/pacman_d.png'
+    pacman_sprite_l = 'sprites/pacman_l.png'
+    pacman_sprite_r = 'sprites/pacman_r.png'
     def __init__(self, game, x, y, map_ref: Map):
         super().__init__(game, x, y, pygame.image.load(self.pacman_sprite), Content.PACMAN, map_ref)
         self.points = 0
@@ -18,10 +18,11 @@ class Pacman(MovingObject):
         self.lives = 3
         self.dir = (0, 0)
         self.cache_dir = (0, 0)
-        # self.sprite_u = pygame.image.load(self.pacman_sprite_u)
-        # self.sprite_d = pygame.image.load(self.pacman_sprite_d)
-        # self.sprite_l = pygame.image.load(self.pacman_sprite_l)
-        # self.sprite_r = pygame.image.load(self.pacman_sprite_r)
+        self.sprite_i = pygame.image.load(self.pacman_sprite)
+        self.sprite_u = pygame.image.load(self.pacman_sprite_u)
+        self.sprite_d = pygame.image.load(self.pacman_sprite_d)
+        self.sprite_l = pygame.image.load(self.pacman_sprite_l)
+        self.sprite_r = pygame.image.load(self.pacman_sprite_r)
 
     def process_event(self, event: pygame.event.Event):
         if event.type == pygame.KEYDOWN:
@@ -38,7 +39,7 @@ class Pacman(MovingObject):
             self.move(*self.dir)
         else:
             self.dir = (0, 0)
-            # self._sprite_update()
+        self._sprite_update()
         
 
 
@@ -80,12 +81,12 @@ class Pacman(MovingObject):
     
     def _sprite_update(self):
         if self.dir[0] == 1:
-            pass # self.sprite_r
+            self.sprite = self.sprite_r
         elif self.dir[0] == -1:
-            pass # self.sprite_l
+            self.sprite = self.sprite_l
         elif self.dir[1] == 1:
-            pass # self.sprite_d
+            self.sprite = self.sprite_d
         elif self.dir[1] == -1:
-            pass # self.sprite_u
+            self.sprite = self.sprite_u
         elif self.dir == (0, 0):
-            pass # self.sprite
+            self.sprite = self.sprite_i
