@@ -20,7 +20,9 @@ class Map:
         self.teleport2 = None
 
         self.tile_arr = self.extract(self.map_path)
-        self.dot_count = sum([1 for arr in self.tile_arr for tile in arr if tile.content == Content.DOT])
+        self.eatable_count = sum([1 for arr in self.tile_arr for tile in arr if tile.content == Content.DOT or
+                                                                                tile.content == Content.POWER_UP or
+                                                                                tile.content == Content.CHERRY])
         self.check_teleport_pos()
 
     def process_draw(self):

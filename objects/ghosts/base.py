@@ -42,7 +42,7 @@ class MovementMode:
         if len(possible_moves) != 0:
             next_move = min(possible_moves, key=lambda x: x[1])
             return next_move[0][1][::-1]
-        return 0, 0
+        return self.ghost.dir[0] * -1, self.ghost.dir[1] * -1
 
     def update_ttile(self):
         pass
@@ -84,7 +84,7 @@ class Ghost(MovingObject):
         self.dir = (0, 0)
         self.modes = [Scatter(self, ttile_coords), Scatter(self, ttile_coords), Frightened(self, ttile_coords)]
         self.ctime = -1
-        self.mode_time = [7, 20, 7, 20, 5, 20, 5]
+        self.mode_time = [7, 10, 7, 10, 5, 10, 5]
         self.selected_mode = 0
         self.last_time = 0  # needed to reset the time after death of the punkman
         # self.target_tile.sprite = pygame.image.load('sprites/error_sprite.png')

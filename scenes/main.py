@@ -42,13 +42,22 @@ class MainScene(BaseScene):
         self.objects[6].update_text(f'{" "*len(str(p))}Score:{p}')
         self.objects[7].update_text(f'Lives:{l}')
 
+    def is_win(self):
+        if self.map.eatable_count == self.pacman.eaten:
+            self.save_record()
+            self.game.set_scene(self.game.RECORDS_SCENE_INDEX)
+
     def additional_logic(self):
         self.pacman_ghost_collision()
         self.update_stats()
+        self.is_win()
 
     def save_record(self):
         with open('records.txt', 'a') as r_file:
             r_file.write(str(self.objects[1].points) + '\n')
 
     def on_activate(self):
-        self.objects[1].lives = 3
+        self.pacman.lives = 10
+        self.pacman.eaten = 0
+        self.pacman.points = 0
+        self.map.tile_arr = self.map.extract(self.map.map_path)  # should be a method in Map
