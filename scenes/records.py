@@ -12,9 +12,9 @@ class RecordsScene(BaseScene):
             10, 25, 200, 50,
             Color.ORANGE, self.exit_to_menu, "Назад"
         )
-        self.record_1 = TextObject(self.game, text='1) None', x=self.game.WIDTH // 2, y=self.game.HEIGHT // 2 - 50)
-        self.record_2 = TextObject(self.game, text='2) None', x=self.game.WIDTH // 2, y=self.game.HEIGHT // 2)
-        self.record_3 = TextObject(self.game, text='3) None', x=self.game.WIDTH // 2, y=self.game.HEIGHT // 2 + 50)
+        self.record_1 = TextObject(self.game, font_name='fonts/PressStart2P-Regular.ttf', text='1) None', x=self.game.WIDTH // 2, y=self.game.HEIGHT // 2 - 50)
+        self.record_2 = TextObject(self.game, font_name='fonts/PressStart2P-Regular.ttf', text='2) None', x=self.game.WIDTH // 2, y=self.game.HEIGHT // 2)
+        self.record_3 = TextObject(self.game, font_name='fonts/PressStart2P-Regular.ttf', text='3) None', x=self.game.WIDTH // 2, y=self.game.HEIGHT // 2 + 50)
         self.objects = [self.button_exit, self.record_1, self.record_2, self.record_3]
 
     def on_activate(self):
